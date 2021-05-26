@@ -39,7 +39,7 @@ function handleSubmit() {
   book.author = $('#author').val();
   book.title = $('#title').val();
   addBook(book);
-}
+} // End handleSubmit()
 
 // adds a book to the database
 function addBook(bookToAdd) {
@@ -47,14 +47,16 @@ function addBook(bookToAdd) {
     type: 'POST',
     url: '/books',
     data: bookToAdd,
-    }).then(function(response) {
-      console.log('Response from server.', response);
-      refreshBooks();
-    }).catch(function(error) {
-      console.log('Error in POST', error)
-      alert('Unable to add book at this time. Please try again later.');
-    });
-}
+    }) // End .ajax
+      .then(function(response) {
+        console.log('Response from server.', response);
+        refreshBooks();
+    }) // End .then
+      .catch(function(error) {
+        console.log('Error in POST', error)
+        alert('Unable to add book at this time. Please try again later.');
+    }); // End .catch
+} // End addBook()
 
 // refreshBooks will get all books from the server and render to page
 function refreshBooks() {
@@ -81,6 +83,8 @@ function renderBooks(books) {
       <tr>
         <td>${book.title}</td>
         <td>${book.author}</td>
+        <td>${book.isRead}</td>
+        <td><button class="readButtons" data-id="${book.id}">Mark As Read</button></td>
         <td><button class="deleteButtons" data-id="${book.id}">Delete Book</button></td>
       </tr>
     `);
