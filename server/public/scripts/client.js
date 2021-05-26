@@ -6,10 +6,35 @@ $(document).ready(function(){
 
 function addClickHandlers() {
   $('#submitBtn').on('click', handleSubmit);
-
   // TODO - Add code for edit & delete buttons
   $( '#bookShelf' ).on( 'click', '.deleteButtons', deleteHandler );
+  $( '#bookShelf' ).on( 'click', '.readButtons', readHandler );
 }
+
+// Function to handle the click event and pass the book id to the deleteBook function:
+function readHandler() {
+  console.log( 'In readHandler' );
+  markedRead( $(this).data( "id" ) );
+} // End readHandler()
+
+function markedRead(bookId) {
+  console.log( 'In markedRead' );
+  $.ajax({
+    method: 'PUT', 
+    url: `books/${bookId}`,
+    data: {
+      isRead: true
+    }
+  }) // End .ajax
+    .then( response => {
+      console.log( 'In PUT /books/id. Response:', response );
+      refreshBooks();
+    }) // End .then
+    .catch( error => {
+      console.log( 'In PUT /books/id. Error:', error );
+      alert( `There was an error with markedRead:`, error )
+    }); // End .catch
+} // End markRead()
 
 // Function to handle the click event and pass the book id to the deleteBook function:
 function deleteHandler() {
