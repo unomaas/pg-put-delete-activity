@@ -37,13 +37,39 @@ router.post('/',  (req, res) => {
 // Updates a book to show that it has been read
 // Request must include a parameter indicating what book to update - the id
 // Request body must include the content to update - the status
-
+router.put( '/:id', ( req, res ) => {
+  console.log( 'In router.put' );
+  // ⬇ Grabbing id of record to delete from the req params:
+  const bookId = req.params.id;
+  console.log( 'The book to mark read is:', bookId );
+  // ⬇ Declaring variables to compare and add to:
+  let isRead = req.body.isRead;
+  let queryText = ``;
+  // ⬇ Creating if else statement for queryText to send to SQL:
+  if ( isRead === 'true' ) {
+    console.log( 'In router.put if true' );
+    const queryText = `UPDATE "books" SET "isRead" = 'true' WHERE "books".id = $1;`;
+  } else {
+    console.log( 'In router.put else' );
+    res.sendStatus( 500 );
+    return;
+  } // End if statement.
+  pool.query( queryText, [bookId] )
+    .then( response => {
+      console.log( 'Marked isRead on book ID:', bookId );
+      res.sendStatus( 202 ); // Accepted.
+    }) // End .then
+    .catch( error => {
+      console.log( 'Unable to mark isRead. Error:', error );
+      res.sendStatus( 500 );
+    }); // End .catch
+})
 
 // TODO - DELETE 
 // Removes a book to show that it has been read
 // Request must include a parameter indicating what book to update - the id
 router.delete( "/:id", ( req, res ) => {
-  console.log('In router.delete');
+  console.log( 'In router.delete' );
   // ⬇ Grabbing id of record to delete from the req params:
   const itemToDelete = req.params.id;
   console.log( 'The ID to delete is:', itemToDelete ); 
