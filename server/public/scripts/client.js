@@ -8,7 +8,30 @@ function addClickHandlers() {
   $('#submitBtn').on('click', handleSubmit);
 
   // TODO - Add code for edit & delete buttons
+  $( '#bookShelf' ).on( 'click', '.deleteButtons', deleteHandler );
 }
+
+// Function to handle the click event and pass the book id to the deleteBook function:
+function deleteHandler() {
+  console.log( 'In deleteHandler' );
+  deleteBook( $(this).data( "id" ) );
+} // End deleteHandler()
+
+function deleteBook(bookId) {
+  console.log( 'In deleteBook' );
+  $.ajax({
+    method: 'DELETE',
+    url: `/books/${bookId}`,
+  }) // End .ajax
+    .then( response => {
+      console.log( 'In DELETE /books/id. Response:', response );
+      refreshBooks();
+    }) // End .then
+    .catch( error => {
+      console.log( 'In DELETE /books/id. Error:', error );
+      alert( `There was a problem deleting that book, please try again:`, error );
+    }); // End .catch
+} // End deleteBook()
 
 function handleSubmit() {
   console.log('Submit button clicked.');
@@ -58,7 +81,10 @@ function renderBooks(books) {
       <tr>
         <td>${book.title}</td>
         <td>${book.author}</td>
+        <td><button class="deleteButtons" data-id="${book.id}">Delete Book</button></td>
       </tr>
     `);
   }
 }
+
+

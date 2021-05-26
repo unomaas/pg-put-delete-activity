@@ -16,9 +16,11 @@ Use the provided `database.sql` file to create the `books` table and setup some 
 
 ### Remove a book
 
-- [] Users want to be able to remove a book from the book list.  
-  - [] Add a `Delete` button for each book. 
+- [x] Users want to be able to remove a book from the book list.  
+  - [x] Add a `Delete` button for each book. 
   - [] This should make an AJAX call to a `DELETE` endpoint, passing the book `id` as a URL parameter, and removing the book from the database.
+    - [x] AJAX Client Side
+    - [] Server Side
 
 ### Update a book
 
@@ -31,9 +33,11 @@ Use the provided `database.sql` file to create the `books` table and setup some 
 
 ### Task list
 
-- [] DELETE & PUT AJAX calls
+- [] DELETE & PUT AJAX CALLS CLIENT SIDE
 - [] DELETE & PUT SERVER SIDE 
 - [] Page should refresh with up to date data after a DELETE or PUT
+  - [x] DELETE
+  - [] PUT
 
 
 ## Stretch Goals
