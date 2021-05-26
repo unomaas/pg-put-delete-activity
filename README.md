@@ -16,19 +16,24 @@ Use the provided `database.sql` file to create the `books` table and setup some 
 
 ### Remove a book
 
-Users want to be able to remove a book from the book list.  Add a `Delete` button for each book. This should make an AJAX call to a `DELETE` endpoint, passing the book `id` as a URL parameter, and removing the book from the database.
+- [] Users want to be able to remove a book from the book list.  
+  - [] Add a `Delete` button for each book. 
+  - [] This should make an AJAX call to a `DELETE` endpoint, passing the book `id` as a URL parameter, and removing the book from the database.
 
 ### Update a book
 
-Users also want to be able to mark a book as read. The database has already been setup with a `isRead` column, but this is not currently rendered on the DOM. Update the book list display to show if a book has been read or not. 
+- [] Users also want to be able to mark a book as read. 
+  - [] The database has already been setup with a `isRead` column, but this is not currently rendered on the DOM. 
+  - [] Update the book list display to show if a book has been read or not. 
 
-Add another button to each book allowing the user to `Mark as Read`. This should trigger a `PUT` AJAX call, passing the book `id` as a URL parameter, and update the book record in the database.
+- [] Add another button to each book allowing the user to `Mark as Read`. 
+  - [] This should trigger a `PUT` AJAX call, passing the book `id` as a URL parameter, and update the book record in the database.
 
 ### Task list
 
-- [ ] DELETE & PUT AJAX calls
-- [ ] DELETE & PUT SERVER SIDE 
-- [ ] Page should refresh with up to date data after a DELETE or PUT
+- [] DELETE & PUT AJAX calls
+- [] DELETE & PUT SERVER SIDE 
+- [] Page should refresh with up to date data after a DELETE or PUT
 
 
 ## Stretch Goals
