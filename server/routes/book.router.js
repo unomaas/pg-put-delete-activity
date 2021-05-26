@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-
 const pool = require('../modules/pool');
 
 // Get all books
@@ -43,6 +42,23 @@ router.post('/',  (req, res) => {
 // TODO - DELETE 
 // Removes a book to show that it has been read
 // Request must include a parameter indicating what book to update - the id
-
+router.delete( "/:id", ( req, res ) => {
+  console.log('In router.delete');
+  // ⬇ Grabbing id of record to delete from the req params:
+  const itemToDelete = req.params.id;
+  console.log( 'The ID to delete is:', itemToDelete ); 
+  // ⬇ Creating queryText to send to SQL:
+  const queryText = `DELETE FROM "books" WHERE "books".id = $1;`;
+  // ⬇ itemToDelete needs to be an array:
+  pool.query( queryText, [itemToDelete] )
+    .then( response => {
+      console.log( 'Deleted the book with ID:', itemToDelete );
+      res.sendStatus( 202 ); // "Accepted"
+    }) // End .then
+    .catch( error => {
+      console.log( 'Unable to delete book. Error:', error );
+      res.sendStatus( 500 );
+    }); // End .catch
+}) // End router.delete
 
 module.exports = router;

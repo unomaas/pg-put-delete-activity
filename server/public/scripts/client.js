@@ -24,7 +24,7 @@ function deleteBook(bookId) {
     url: `/books/${bookId}`,
   }) // End .ajax
     .then( response => {
-      console.log( 'In DELETE /books/id. Response:', response );
+      console.log( 'In DELETE /books/id. Response:', response ); 
       refreshBooks();
     }) // End .then
     .catch( error => {
