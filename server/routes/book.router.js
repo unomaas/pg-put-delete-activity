@@ -47,8 +47,8 @@ router.put( '/:id', ( req, res ) => {
   let queryText = ``;
   // ⬇ Creating if else statement for queryText to send to SQL:
   if ( isRead === 'true' ) {
-    console.log( 'In router.put if true' );
-    queryText = `UPDATE "books" SET "isRead" = 'true' WHERE "books".id = $1;`;
+    console.log( 'In router.put if isRead true' );
+    queryText = `UPDATE "books" SET "isRead" = NOT "isRead" WHERE "books".id = $1;`;
   } else {
     console.log( 'In router.put else' );
     res.sendStatus( 500 );

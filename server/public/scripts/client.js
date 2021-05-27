@@ -23,7 +23,7 @@ function markedRead(bookId) {
     method: 'PUT', 
     url: `books/${bookId}`,
     data: {
-      isRead: true
+      isRead: true // Will be on: req.body.isRead
     }
   }) // End .ajax
     .then( response => {
