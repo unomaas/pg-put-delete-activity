@@ -45,3 +45,6 @@ VALUES
 	('Island of Glass', 'Nora Roberts', '12-6-2016');
 
 SELECT * FROM "books";
+
+UPDATE "books" SET "isRead" = 'true' WHERE "books".id = 1;
+UPDATE "books" SET "isRead" = 'false' WHERE "books".id = 1;
